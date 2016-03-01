@@ -29,7 +29,9 @@ from librato_python_web.instrumentor.instrument2 import get_complex_wrapper, ins
 
 
 class ElasticsearchInstrumentor(BaseInstrumentor):
-    modules = ['elasticsearch.client']
+    modules = {
+                  'elasticsearch.client': ['Elasticsearch']
+              }
 
     def __init__(self):
         super(ElasticsearchInstrumentor, self).__init__()

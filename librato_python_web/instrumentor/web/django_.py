@@ -97,7 +97,7 @@ def _django_wsgi_call(original_method, *args, **keywords):
 
 
 class DjangoCoreInstrumentor(BaseInstrumentor):
-    modules = ['django.core.handlers.wsgi', 'django.conf']
+    modules = {'django.core.handlers.wsgi': ['WSGIHandler']}
 
     def __init__(self):
         super(DjangoCoreInstrumentor, self).__init__()
@@ -107,12 +107,11 @@ class DjangoCoreInstrumentor(BaseInstrumentor):
             {
                 'django.core.handlers.wsgi.WSGIHandler.__call__':
                     get_conditional_wrapper(_django_wsgi_call, state='wsgi', enable_if=None),
-                'django.conf.LazySettings.__getattr__': django_inject_middleware,
             })
 
 
 class DjangoConfInstrumentor(BaseInstrumentor):
-    modules = ['django.conf']
+    modules = {'django.conf': ['LazySettings']}
 
     def __init__(self):
         super(DjangoConfInstrumentor, self).__init__()
@@ -125,7 +124,7 @@ class DjangoConfInstrumentor(BaseInstrumentor):
 
 
 class DjangoDbInstrumentor(BaseInstrumentor):
-    modules = ['django.db.models.query']
+    modules = {'django.db.models.query': ['QuerySet']}
 
     def __init__(self):
         super(DjangoDbInstrumentor, self).__init__()

@@ -28,7 +28,7 @@ from librato_python_web.instrumentor.base_instrumentor import BaseInstrumentor
 
 
 class LoggingInstrumentor(BaseInstrumentor):
-    modules = ['logging']
+    modules = {'logging': ['Logger']}
 
     def __init__(self):
         super(LoggingInstrumentor, self).__init__()

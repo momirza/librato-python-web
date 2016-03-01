@@ -29,7 +29,7 @@ from librato_python_web.instrumentor.instrument2 import get_complex_wrapper, ins
 
 
 class PykafkaInstrumentor(BaseInstrumentor):
-    modules = ['pykafka', 'pykafka.simpleconsumer']
+    modules = {'pykafka': ['Producer'], 'pykafka.simpleconsumer': ['SimpleConsumer']}
 
     def __init__(self):
         super(PykafkaInstrumentor, self).__init__()

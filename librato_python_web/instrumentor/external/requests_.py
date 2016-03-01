@@ -53,7 +53,7 @@ def _session_send_wrapper(func, *args, **keywords):
 
 
 class RequestsInstrumentor(BaseInstrumentor):
-    modules = ['requests.sessions']
+    modules = {'requests.sessions': ['Session']}
 
     def __init__(self):
         super(RequestsInstrumentor, self).__init__(
